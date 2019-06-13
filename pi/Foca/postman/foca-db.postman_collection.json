@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "ea9bc5ff-09c3-4b1a-8af4-d04e3239cb79",
+		"name": "foca-db",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete index",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/apifoca",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"apifoca"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

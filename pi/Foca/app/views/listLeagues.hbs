@@ -1,0 +1,21 @@
+<table class="table">
+    <thead>
+        <tr>            
+            <th>Name</th>
+            <th>Location</th>
+        </tr>
+        <body>
+            {{#each leagues}}
+                <tr>
+                    <td>
+                        <a href="#leagues/{{id}}">{{name}} </a>
+                        {{#if emblemUrl }}
+                            <img src={{emblemUrl}} width="50px">
+                        {{/if}}
+                    </td>
+                    <td>{{location}}</td>
+                </tr>
+            {{/each}}
+        </body>
+    </thead>
+</table>

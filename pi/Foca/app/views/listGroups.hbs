@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Your Teams</div>
+    <p></p>
+    {{#if groups.length}}
+        <table class="table">
+            <thead>
+                <tr>            
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                <body>
+                    {{#each groups}}
+                        <tr>
+                            <td>
+                                <a href="#groups/{{id}}">{{name}} </a>
+                            </td>
+                            <td>{{description}}</td>
+                            <td>
+                                <button class="btn delete" group-id="{{id}}">Delete</button>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </body>
+            </thead>
+        </table>
+    {{else}}
+        <div class="panel-body">
+            <p>None yet!</p>
+        </div>
+    {{/if}}
+</div>
+

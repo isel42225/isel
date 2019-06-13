@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name" translatable="false">YAMA</string>
+    <string name="userId">User ID</string>
+    <string name="organization">Organization</string>
+    <string name="AccessToken">Access Token</string>
+    <string name="loginButton" translatable="false">Login</string>
+    <string name="enterMessage">Write your message…</string>
+
+    <!-- Strings related to Login -->
+    <string name="empty_login_fields">You must fill UserId and Organization!</string>
+
+    <!-- Strings related to volleyError -->
+    <string name="error_network">Could not reach data origin</string>
+    <string name="invalid_access_token">The access token you provided is invalid. Try Again!</string>
+    <string name="resource_not_found">Resource not found!</string>
+
+    <string name="login_successful">Login successful</string>
+    <string name="title_activity_teams" translatable="false">TeamsActivity</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_members" translatable="false">MembersActivity</string>
+    <string name="teams">Teams</string>
+    <string name="Members">Members</string>
+    <string name="Followers">Followers</string>
+    <string name="LoginFail">login does not match</string>
+    <string name="sign_in" translatable="false">Sign in</string>
+    <string name="yet_another_messaging_aplication" translatable="false">Yet Another Messaging Aplication</string>
+    <string name="logout" translatable="false">logout</string>
+    <string name="network_warning">You must have internet connection to use the chat!</string>
+
+
+</resources>

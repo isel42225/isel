@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    {{!-- <div class="panel-heading">Your Teams</div> --}}
+    <p></p>
+    {{#if length}}
+        <table class="table">
+            <thead>
+                <tr>            
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+                <body>
+                    {{#each .}}
+                    <tr>
+                        <td>{{homeTeam.name}}</td>
+                        <td>{{awayTeam.name}}</td>
+                        <td>{{score}}</td>
+                        <td>{{date}}</td>
+                    </tr>
+                    {{/each}}
+                </body>
+            </thead>
+        </table>
+    {{else}}
+        <div class="panel-body">
+            <p>No matches ocurred between those dates</p>
+        </div>
+    {{/if}}
+</div>

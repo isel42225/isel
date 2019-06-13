@@ -1,0 +1,33 @@
+<table class="table">
+    {{#if length}}
+        <thead>
+            <tr>            
+                <th>Name</th>
+                <th>Location</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+            <body>
+                {{#each .}}
+                    <tr>
+                        <td>
+                            {{#if emblemUrl}}
+                                <img src={{emblemUrl}} width="30px">
+                            {{/if}}
+                                <a href="#teams/{{id}}">{{name}} </a>
+                        </td>
+                        <td>{{location}}</td>
+                        <td>{{venue}}</td>
+                        <td>
+                            <button class="btn delete" team-id={{id}}>Delete</button>
+                        </td>
+                    </tr>
+                {{/each}}
+            </body>
+        </thead>
+    {{else}}
+        <div class="panel-body">
+            <p>None yet!</p>
+            </div>
+    {{/if}}
+</table>

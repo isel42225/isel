@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "198fafa8-8edd-4b3e-aa24-4affe0735bcc",
+		"name": "football-data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Leagues",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb3957f0-aa7b-4d9d-84e7-4397555ceddd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.count).to.eql(147);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.football-data.org/v2/competitions",
+					"protocol": "http",
+					"host": [
+						"api",
+						"football-data",
+						"org"
+					],
+					"path": [
+						"v2",
+						"competitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Matches of Team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "344d0234-c10f-45c5-b3ae-cd095401b939",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.count).to.eql(44);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{X-Auth-Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.football-data.org/v2/teams/86/matches?dateFrom=2018-08-17&dateTo=2019-05-26",
+					"protocol": "http",
+					"host": [
+						"api",
+						"football-data",
+						"org"
+					],
+					"path": [
+						"v2",
+						"teams",
+						"86",
+						"matches"
+					],
+					"query": [
+						{
+							"key": "dateFrom",
+							"value": "2018-08-17"
+						},
+						{
+							"key": "dateTo",
+							"value": "2019-05-26"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get teams of the leagues",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{X-Auth-Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.football-data.org/v2/competitions/2021/teams",
+					"protocol": "http",
+					"host": [
+						"api",
+						"football-data",
+						"org"
+					],
+					"path": [
+						"v2",
+						"competitions",
+						"2021",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Team",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{X-Auth-Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.football-data.org/v2/teams/86",
+					"protocol": "http",
+					"host": [
+						"api",
+						"football-data",
+						"org"
+					],
+					"path": [
+						"v2",
+						"teams",
+						"86"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

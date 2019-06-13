@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="userId">ID Utilizador</string>
+    <string name="organization">Organização</string>
+    <string name="empty_login_fields">Deve preencher o ID Utilizador e Organização!</string>
+    <string name="resource_not_found">Recurso não encontrado!</string>
+    <string name="invalid_access_token">O token de acesso passado não é válido. Tenta outra vez!</string>
+    <string name="AccessToken">Token de acesso</string>
+    <string name="teams">Equipas</string>
+    <string name="login_successful">Login com sucesso</string>
+    <string name="Members">Membros</string>
+    <string name="Followers">Seguidores</string>
+    <string name="error_network" translatable="false">"Erro de ligação ao servidor "</string>
+    <string name="LoginFail">Login incorreto</string>
+    <string name="enterMessage">Escreve a sua mensagem…</string>
+    <string name="network_warning">É neccessário ligar-se à internet para usar o chat!</string>
+</resources>

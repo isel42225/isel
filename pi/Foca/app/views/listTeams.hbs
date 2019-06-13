@@ -1,0 +1,41 @@
+<table class="table">
+    {{#if teams.length}}
+        <thead>
+            <tr>            
+                <th>Name</th>
+                <th>Location</th>
+                <th>Venue</th>
+                <th>Your Groups</th>
+                <th>
+                    <button id="buttonAdd" type="submit" class="btn btn-primary">Add</button>
+                </th>
+            </tr>
+            <body>
+                {{#each teams}}
+                    <tr>
+                        <td>
+                            {{#if emblemUrl}}
+                                <img src={{emblemUrl}} width="30px">
+                            {{/if}}
+                            <a href="#teams/{{id}}">{{name}} </a>
+                        </td>
+                        <td>{{location}}</td>
+                        <td>{{venue}}</td>
+                        {{#each ../groups}}
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" team-id={{../this.id}} group-id={{id}}>
+                                    <label class="form-check-label" for="inlineCheckbox1">{{name}}</label>
+                                </div>
+                            </td>
+                        {{/each}}
+                    </tr>
+                {{/each}}
+            </body>
+        </thead>
+    {{else}}
+        <div class="panel-body">
+            <p>None yet!</p>
+        </div>
+    {{/if}}
+</table>

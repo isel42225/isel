@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "42458471199",
+    "firebase_url": "https://yama-31327.firebaseio.com",
+    "project_id": "yama-31327",
+    "storage_bucket": "yama-31327.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42458471199:android:5f5acb9fccc68466",
+        "android_client_info": {
+          "package_name": "isel.pdm.yama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42458471199-scm2o0k5ha984im3grq4ulittp7f4iql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "isel.pdm.yama",
+            "certificate_hash": "086fa31a9e2e0b51e2ef07d62d5bf003b75803c0"
+          }
+        },
+        {
+          "client_id": "42458471199-kh2m2e5bst2kusklpjmou7036v4sb4pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4qr-8BW9V9pVZE4dH0HpkFkFjzNn0mR8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42458471199-kh2m2e5bst2kusklpjmou7036v4sb4pl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

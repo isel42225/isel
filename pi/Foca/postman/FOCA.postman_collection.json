@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "0e54728d-a81e-42aa-a8cb-3ac13c113c25",
+		"name": "FOCA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all leagues",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6542fbf6-3994-4307-a11f-156465fa9436",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Should return an array with length of 2\", function () {",
+							"    var res = pm.response.json();",
+							"    var hits = res.count ",
+							"    pm.expect(hits).to.eql(147);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/leagues",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"leagues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all teams from a league",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92e12954-107d-4bb5-b203-b9b99f860f04",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should return an array with length of 2\", function () {",
+							"    var res = pm.response.json();",
+							"    var total = res.count;",
+							"    pm.expect(total).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Should return correct teams\", function () {",
+							"    var res = pm.response.json();",
+							"    var teams = res.teams;",
+							"    var first = teams[0];",
+							"    pm.expect(first.name).to.eql(\"Arsenal\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/leagues/2021/teams",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"leagues",
+						"2021",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a group giving it a name and a description",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c83d8249-eb74-4c69-a489-ea36078a8b16",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response body should have id  and get_url properties\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id);",
+							"    pm.expect(jsonData.get_url);",
+							"    pm.expect(jsonData.teams);",
+							"    pm.globals.set(\"idGroup\", jsonData.id);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"fav\",\n\t\"description\":\"best\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get detail of a group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e4c48e5-8f27-4b92-878c-c1d0cc033668",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idGroup\"));",
+							"",
+							"    pm.expect(jsonData.name).to.eql(\"fav\"); ",
+							"    pm.expect(jsonData.description).to.eql(\"best\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit group, chaging its name and description",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40789b28-c6d3-45a8-aaef-695e468d4d74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Should update with success\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.newName).to.eql(\"NotMyTeams\")",
+							"    pm.expect(data.newDescription).to.eql(\"Teams I don't like anymore\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"NotMyTeams\",\n\t\"description\":\"Teams I don't like anymore\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a team to a group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e2abd5e-358a-40e9-b7e7-feb809b449e7",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Should add my team to my group\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}/team/86",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}",
+						"team",
+						"86"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get matches of my teams between two dates",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be4d8757-bf29-45c0-9a2f-ba2435e33580",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should return array with 43 matches\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.count).to.eql(43);",
+							"    var match1 = data.matches[0];",
+							"    pm.expect(match1.score).to.eql('Real Madrid CF 2 - 0 Getafe CF')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}/matches?from=2018-05-17&to=2019-05-26",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}",
+						"matches"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2018-05-17"
+						},
+						{
+							"key": "to",
+							"value": "2019-05-26"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a team from group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9265862-5857-4227-8dec-ee7eb9aedda8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should delete with success\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successfull).to.eql(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}/team/86",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}",
+						"team",
+						"86"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete created group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e95e7a06-ab30-4eda-b9b5-5cd0309bd3da",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/foca/myteams/{{idGroup}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"foca",
+						"myteams",
+						"{{idGroup}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
