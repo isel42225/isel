@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Character</th>
+                <th>Job</th>
+            </tr>
+                {{#each credits}}
+                <tr>
+                    <td> {{name}} </td>
+                    <td>
+                        <a href='/person/{{id}}'>
+                             {{id}}
+                        </a>
+                    </td>
+                    <td> {{character}} </td>
+                    <td> {{job}}</td>
+                </tr>
+            {{/each}}
+        </table>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+package movasync.model;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+/**
+ * @author Miguel Gamboa
+ *         created on 04-08-2017
+ */
+public class Person {
+    private final int id;
+    private final String name;
+    private final CompletableFuture<Stream<SearchItem>> movies;
+    private final String placeOfBirth;
+    private final String biography;
+
+    public Person(int id, String name, String placeOfBirth, String biography, CompletableFuture<Stream<SearchItem>> movies) {
+        this.id = id;
+        this.name = name;
+        this.movies = movies;
+        this.placeOfBirth = placeOfBirth;
+        this.biography = biography;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPlaceOfBirth() {
+        return placeOfBirth;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public CompletableFuture<Stream<SearchItem>> getMovies() {
+        return movies;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", movies=" + movies +
+                '}';
+    }
+}

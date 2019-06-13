@@ -1,0 +1,12 @@
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\bin\Debug\SqlReflect.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\bin\Debug\SqlReflect.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\obj\Debug\SqlReflect.csprojResolveAssemblyReference.cache
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\obj\Debug\SqlReflect.csproj.CoreCompileInputs.cache
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\obj\Debug\SqlReflect.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\autosql\SqlReflect\obj\Debug\SqlReflect.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\bin\Debug\SqlReflect.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\bin\Debug\SqlReflect.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\obj\Debug\SqlReflect.csproj.CoreCompileInputs.cache
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\obj\Debug\SqlReflect.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\obj\Debug\SqlReflect.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\SqlReflect\obj\Debug\SqlReflect.csprojResolveAssemblyReference.cache

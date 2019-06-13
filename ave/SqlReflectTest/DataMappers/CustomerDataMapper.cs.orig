@@ -1,0 +1,73 @@
+﻿using System;
+using System.Data;
+using SqlReflect;
+
+namespace SqlReflectTest.DataMappers
+{
+    class CustomerDataMapper : DynamicDataMapper
+    {
+
+         const string COLUMNS = "CompanyName, ContactName, ContactTitle," +
+            " Address, City, Region, PostalCode , Country, Phone, Fax"; 
+
+        public CustomerDataMapper(Type klass, string connStr, bool withCache) : base(klass, connStr, withCache)
+        {
+           
+        }
+
+        protected override object Load(IDataReader dr)
+        {
+
+            //if (dr == null) Console.WriteLine("true");
+            Customer c = new Customer();
+<<<<<<< HEAD
+            c.CustomerID = dr.GetValue(0) as string;
+            c.CompanyName = dr.GetValue(1) as string;
+            c.ContactName = dr.GetValue(2) as string;
+            c.ContactTitle = dr.GetValue(3) as string;
+            c.Address = dr.GetValue(4) as string;
+            c.City = dr.GetValue(5) as string;
+            c.Region = dr.GetValue(6) as string;
+            c.PostalCode = dr.GetValue(7) as string;
+            c.Country = dr.GetValue(8) as string;
+            c.Phone = dr.GetValue(9) as string;
+            c.Fax = dr.GetValue(10) as string;
+=======
+           
+            c.CustomerID = dr.GetValue(0) as string;
+            c.CompanyName = dr.GetValue(1) as string;
+            c.ContactName = dr.GetValue(2) as string;    //
+            c.ContactTitle = dr.GetValue(3) as string;   //
+            c.Address = dr.GetValue(4) as string;        //
+            c.City = dr.GetValue(5) as string;           //
+            c.Region = dr.GetValue(6) as string;         // In case DBNull as operator
+            c.PostalCode = dr.GetValue(7) as string;     // puts null in Property
+            c.Country = dr.GetValue(8) as string;        //
+            c.Phone = dr.GetValue(9) as string;          //
+            c.Fax = dr.GetValue(10) as string;           //
+>>>>>>> 8b3401540f92cd6c69c60ed818917d641dd138af
+
+            return c;
+
+        }
+
+        protected override string SqlDelete(object target)
+        {
+            Customer c = (Customer)target;
+            return base.deleteStmt + c.CustomerID;
+        }
+
+        protected override string SqlInsert(object target)
+        {
+            Customer c = (Customer) target;
+            return base.insertStmt + "("+c.CompanyName+")";
+        }
+
+        protected override string SqlUpdate(object target)
+        {
+            Customer c = (Customer)target;
+             return String.Format(base.insertStmt , COLUMNS ,c.CustomerID);
+        }
+        
+    }
+}

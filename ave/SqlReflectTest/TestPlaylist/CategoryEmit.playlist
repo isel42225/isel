@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="SqlReflectTest.CategoryEmitDataMapperTest.TestCategoryUpdateEmit" /><Add Test="SqlReflectTest.CategoryEmitDataMapperTest.TestCategoryGetByIdEmit" /><Add Test="SqlReflectTest.CategoryEmitDataMapperTest.TestCategoryInsertAndDeleteEmit" /><Add Test="SqlReflectTest.CategoryEmitDataMapperTest.TestCategoryGetAllEmit" /></Playlist>

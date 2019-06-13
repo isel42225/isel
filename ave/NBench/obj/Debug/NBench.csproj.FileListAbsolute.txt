@@ -1,0 +1,6 @@
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\bin\Debug\NBench.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\bin\Debug\NBench.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\obj\Debug\NBench.csproj.CoreCompileInputs.cache
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\obj\Debug\NBench.dll
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\obj\Debug\NBench.pdb
+C:\Users\gonca\ISEL\Cadeiras\17-18v\AVE\Código\TP\1718v-LI42D-G02\NBench\obj\Debug\NBench.csprojResolveAssemblyReference.cache

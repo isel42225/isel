@@ -1,0 +1,11 @@
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\obj\Debug\Serie3.csproj.CoreCompileInputs.cache
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Serie3.exe.config
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Serie3.exe
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Serie3.pdb
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\obj\Debug\Serie3.csproj.CopyComplete
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\obj\Debug\Serie3.exe
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\obj\Debug\Serie3.pdb
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\Séries\3\Serie3\Serie3\obj\Debug\Serie3.csprojResolveAssemblyReference.cache

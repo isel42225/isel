@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="SqlReflectTest.RegionEmitDataMapperTest.TestRegionGetByIdEmit" /><Add Test="SqlReflectTest.RegionEmitDataMapperTest.TestRegionGetAllEmit" /><Add Test="SqlReflectTest.RegionEmitDataMapperTest.TestRegionInsertAndDeleteEmit" /><Add Test="SqlReflectTest.RegionEmitDataMapperTest.TestRegionUpdateEmit" /></Playlist>

@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="SqlReflectTest.CustomerDataMapperTest.TestCustomersUpdate" /><Add Test="SqlReflectTest.CustomerDataMapperTest.TestCustomersInsertAndDelete" /><Add Test="SqlReflectTest.CustomerDataMapperTest.TestCustomerGetAll" /><Add Test="SqlReflectTest.CustomerDataMapperTest.TestCustomersGetById" /></Playlist>
