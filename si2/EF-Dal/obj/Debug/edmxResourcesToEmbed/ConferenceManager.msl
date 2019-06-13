@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SI2ModelStoreContainer" CdmEntityContainer="cs">
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="SI2Model.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="conferenceId" ColumnName="conferenceId" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="accepted" ColumnName="accepted" />
+          <ScalarProperty Name="submissionDate" ColumnName="submissionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArticleAuthors">
+      <EntityTypeMapping TypeName="SI2Model.ArticleAuthor">
+        <MappingFragment StoreEntitySet="ArticleAuthor">
+          <ScalarProperty Name="articleId" ColumnName="articleId" />
+          <ScalarProperty Name="authorId" ColumnName="authorId" />
+          <ScalarProperty Name="isResponsible" ColumnName="isResponsible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArticleReviewers">
+      <EntityTypeMapping TypeName="SI2Model.ArticleReviewer">
+        <MappingFragment StoreEntitySet="ArticleReviewer">
+          <ScalarProperty Name="articleId" ColumnName="articleId" />
+          <ScalarProperty Name="reviewerId" ColumnName="reviewerId" />
+          <ScalarProperty Name="revisionText" ColumnName="revisionText" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArticleStates">
+      <EntityTypeMapping TypeName="SI2Model.ArticleState">
+        <MappingFragment StoreEntitySet="ArticleState">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="SI2Model.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="authorId" ColumnName="authorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conferences">
+      <EntityTypeMapping TypeName="SI2Model.Conference">
+        <MappingFragment StoreEntitySet="Conference">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="acronym" ColumnName="acronym" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="submissionDate" ColumnName="submissionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConferenceUsers">
+      <EntityTypeMapping TypeName="SI2Model.ConferenceUser">
+        <MappingFragment StoreEntitySet="ConferenceUser">
+          <ScalarProperty Name="conferenceId" ColumnName="conferenceId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Files">
+      <EntityTypeMapping TypeName="SI2Model.File">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="articleId" ColumnName="articleId" />
+          <ScalarProperty Name="file1" ColumnName="file" />
+          <ScalarProperty Name="insertionDate" ColumnName="insertionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Institutions">
+      <EntityTypeMapping TypeName="SI2Model.Institution">
+        <MappingFragment StoreEntitySet="Institution">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="acronym" ColumnName="acronym" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviewers">
+      <EntityTypeMapping TypeName="SI2Model.Reviewer">
+        <MappingFragment StoreEntitySet="Reviewer">
+          <ScalarProperty Name="reviewerId" ColumnName="reviewerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SI2Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="institutionId" ColumnName="institutionId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetCompatibleReviewersForArticle" FunctionName="SI2Model.Store.GetCompatibleReviewersForArticle" />
+  </EntityContainerMapping>
+</Mapping>

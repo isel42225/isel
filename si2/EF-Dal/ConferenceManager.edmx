@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SI2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="conferenceId" Type="int" />
+          <Property Name="stateId" Type="int" Nullable="false" />
+          <Property Name="summary" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="accepted" Type="bit" />
+          <Property Name="submissionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArticleAuthor">
+          <Key>
+            <PropertyRef Name="articleId" />
+            <PropertyRef Name="authorId" />
+          </Key>
+          <Property Name="articleId" Type="int" Nullable="false" />
+          <Property Name="authorId" Type="int" Nullable="false" />
+          <Property Name="isResponsible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArticleReviewer">
+          <Key>
+            <PropertyRef Name="articleId" />
+            <PropertyRef Name="reviewerId" />
+          </Key>
+          <Property Name="articleId" Type="int" Nullable="false" />
+          <Property Name="reviewerId" Type="int" Nullable="false" />
+          <Property Name="revisionText" Type="nvarchar" MaxLength="1024" />
+          <Property Name="grade" Type="int" />
+        </EntityType>
+        <EntityType Name="ArticleState">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="authorId" />
+          </Key>
+          <Property Name="authorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conference">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="acronym" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="grade" Type="int" />
+          <Property Name="submissionDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConferenceUser">
+          <Key>
+            <PropertyRef Name="conferenceId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="conferenceId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="registrationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="articleId" Type="int" Nullable="false" />
+          <Property Name="file" Type="varbinary(max)" Nullable="false" />
+          <Property Name="insertionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Institution">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="acronym" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reviewer">
+          <Key>
+            <PropertyRef Name="reviewerId" />
+          </Key>
+          <Property Name="reviewerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="institutionId" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Article__stateId__3D5E1FD2">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleAu__artic__5441852A">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleAuthor" Type="Self.ArticleAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleAuthor">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleAu__autho__5535A963">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ArticleAuthor" Type="Self.ArticleAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleAuthor">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleRe__artic__5812160E">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleReviewer" Type="Self.ArticleReviewer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleReviewer">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleRe__revie__59063A47">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ArticleReviewer" Type="Self.ArticleReviewer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleReviewer">
+              <PropertyRef Name="reviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Author__authorId__4AB81AF0">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conferenc__userI__5070F446">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ConferenceUser" Type="Self.ConferenceUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ConferenceUser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__File__articleId__412EB0B6">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="File" Type="Self.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviewer__review__4D94879B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviewer" Type="Self.Reviewer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reviewer">
+              <PropertyRef Name="reviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__institutio__47DBAE45">
+          <End Role="Institution" Type="Self.Institution" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institution">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="institutionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Article_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="ConferenceUser" Type="Self.ConferenceUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ConferenceUser">
+              <PropertyRef Name="conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetCompatibleReviewersForArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="articleId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SI2ModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleAuthor" EntityType="Self.ArticleAuthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleReviewer" EntityType="Self.ArticleReviewer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleState" EntityType="Self.ArticleState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConferenceUser" EntityType="Self.ConferenceUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Institution" EntityType="Self.Institution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviewer" EntityType="Self.Reviewer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Article__stateId__3D5E1FD2" Association="Self.FK__Article__stateId__3D5E1FD2">
+            <End Role="ArticleState" EntitySet="ArticleState" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleAu__artic__5441852A" Association="Self.FK__ArticleAu__artic__5441852A">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleAuthor" EntitySet="ArticleAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleAu__autho__5535A963" Association="Self.FK__ArticleAu__autho__5535A963">
+            <End Role="User" EntitySet="User" />
+            <End Role="ArticleAuthor" EntitySet="ArticleAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleRe__artic__5812160E" Association="Self.FK__ArticleRe__artic__5812160E">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleReviewer" EntitySet="ArticleReviewer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleRe__revie__59063A47" Association="Self.FK__ArticleRe__revie__59063A47">
+            <End Role="User" EntitySet="User" />
+            <End Role="ArticleReviewer" EntitySet="ArticleReviewer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Author__authorId__4AB81AF0" Association="Self.FK__Author__authorId__4AB81AF0">
+            <End Role="User" EntitySet="User" />
+            <End Role="Author" EntitySet="Author" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conferenc__userI__5070F446" Association="Self.FK__Conferenc__userI__5070F446">
+            <End Role="User" EntitySet="User" />
+            <End Role="ConferenceUser" EntitySet="ConferenceUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__File__articleId__412EB0B6" Association="Self.FK__File__articleId__412EB0B6">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviewer__review__4D94879B" Association="Self.FK__Reviewer__review__4D94879B">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reviewer" EntitySet="Reviewer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__institutio__47DBAE45" Association="Self.FK__User__institutio__47DBAE45">
+            <End Role="Institution" EntitySet="Institution" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Article_Conference" Association="Self.fk_Article_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_Conference" Association="Self.fk_User_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="ConferenceUser" EntitySet="ConferenceUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SI2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="conferenceId" Type="Int32" />
+          <Property Name="stateId" Type="Int32" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accepted" Type="Boolean" />
+          <Property Name="submissionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ArticleState" Relationship="Self.FK__Article__stateId__3D5E1FD2" FromRole="Article" ToRole="ArticleState" />
+          <NavigationProperty Name="ArticleAuthors" Relationship="Self.FK__ArticleAu__artic__5441852A" FromRole="Article" ToRole="ArticleAuthor" />
+          <NavigationProperty Name="ArticleReviewers" Relationship="Self.FK__ArticleRe__artic__5812160E" FromRole="Article" ToRole="ArticleReviewer" />
+          <NavigationProperty Name="Files" Relationship="Self.FK__File__articleId__412EB0B6" FromRole="Article" ToRole="File" />
+          <NavigationProperty Name="Conference" Relationship="Self.fk_Article_Conference" FromRole="Article" ToRole="Conference" />
+        </EntityType>
+        <EntityType Name="ArticleAuthor">
+          <Key>
+            <PropertyRef Name="articleId" />
+            <PropertyRef Name="authorId" />
+          </Key>
+          <Property Name="articleId" Type="Int32" Nullable="false" />
+          <Property Name="authorId" Type="Int32" Nullable="false" />
+          <Property Name="isResponsible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK__ArticleAu__artic__5441852A" FromRole="ArticleAuthor" ToRole="Article" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ArticleAu__autho__5535A963" FromRole="ArticleAuthor" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ArticleReviewer">
+          <Key>
+            <PropertyRef Name="articleId" />
+            <PropertyRef Name="reviewerId" />
+          </Key>
+          <Property Name="articleId" Type="Int32" Nullable="false" />
+          <Property Name="reviewerId" Type="Int32" Nullable="false" />
+          <Property Name="revisionText" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="grade" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="Self.FK__ArticleRe__artic__5812160E" FromRole="ArticleReviewer" ToRole="Article" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ArticleRe__revie__59063A47" FromRole="ArticleReviewer" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ArticleState">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK__Article__stateId__3D5E1FD2" FromRole="ArticleState" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="authorId" />
+          </Key>
+          <Property Name="authorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Author__authorId__4AB81AF0" FromRole="Author" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Conference">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="acronym" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="grade" Type="Int32" />
+          <Property Name="submissionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Articles" Relationship="Self.fk_Article_Conference" FromRole="Conference" ToRole="Article" />
+          <NavigationProperty Name="ConferenceUsers" Relationship="Self.fk_User_Conference" FromRole="Conference" ToRole="ConferenceUser" />
+        </EntityType>
+        <EntityType Name="ConferenceUser">
+          <Key>
+            <PropertyRef Name="conferenceId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="conferenceId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="registrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Conference" Relationship="Self.fk_User_Conference" FromRole="ConferenceUser" ToRole="Conference" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Conferenc__userI__5070F446" FromRole="ConferenceUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="articleId" Type="Int32" Nullable="false" />
+          <Property Name="file1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="insertionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="Self.FK__File__articleId__412EB0B6" FromRole="File" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Institution">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="acronym" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__institutio__47DBAE45" FromRole="Institution" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Reviewer">
+          <Key>
+            <PropertyRef Name="reviewerId" />
+          </Key>
+          <Property Name="reviewerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Reviewer__review__4D94879B" FromRole="Reviewer" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="institutionId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ArticleAuthors" Relationship="Self.FK__ArticleAu__autho__5535A963" FromRole="User" ToRole="ArticleAuthor" />
+          <NavigationProperty Name="ArticleReviewers" Relationship="Self.FK__ArticleRe__revie__59063A47" FromRole="User" ToRole="ArticleReviewer" />
+          <NavigationProperty Name="Author" Relationship="Self.FK__Author__authorId__4AB81AF0" FromRole="User" ToRole="Author" />
+          <NavigationProperty Name="ConferenceUsers" Relationship="Self.FK__Conferenc__userI__5070F446" FromRole="User" ToRole="ConferenceUser" />
+          <NavigationProperty Name="Institution" Relationship="Self.FK__User__institutio__47DBAE45" FromRole="User" ToRole="Institution" />
+          <NavigationProperty Name="Reviewer" Relationship="Self.FK__Reviewer__review__4D94879B" FromRole="User" ToRole="Reviewer" />
+        </EntityType>
+        <Association Name="FK__Article__stateId__3D5E1FD2">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleAu__artic__5441852A">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleAuthor" Type="Self.ArticleAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleAuthor">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleRe__artic__5812160E">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleReviewer" Type="Self.ArticleReviewer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleReviewer">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__File__articleId__412EB0B6">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="File" Type="Self.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Article_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleAu__autho__5535A963">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ArticleAuthor" Type="Self.ArticleAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleAuthor">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArticleRe__revie__59063A47">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ArticleReviewer" Type="Self.ArticleReviewer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleReviewer">
+              <PropertyRef Name="reviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Author__authorId__4AB81AF0">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="ConferenceUser" Type="Self.ConferenceUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ConferenceUser">
+              <PropertyRef Name="conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conferenc__userI__5070F446">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ConferenceUser" Type="Self.ConferenceUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ConferenceUser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__institutio__47DBAE45">
+          <End Role="Institution" Type="Self.Institution" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institution">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="institutionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviewer__review__4D94879B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviewer" Type="Self.Reviewer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reviewer">
+              <PropertyRef Name="reviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cs" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="ArticleAuthors" EntityType="Self.ArticleAuthor" />
+          <EntitySet Name="ArticleReviewers" EntityType="Self.ArticleReviewer" />
+          <EntitySet Name="ArticleStates" EntityType="Self.ArticleState" />
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Conferences" EntityType="Self.Conference" />
+          <EntitySet Name="ConferenceUsers" EntityType="Self.ConferenceUser" />
+          <EntitySet Name="Files" EntityType="Self.File" />
+          <EntitySet Name="Institutions" EntityType="Self.Institution" />
+          <EntitySet Name="Reviewers" EntityType="Self.Reviewer" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Article__stateId__3D5E1FD2" Association="Self.FK__Article__stateId__3D5E1FD2">
+            <End Role="ArticleState" EntitySet="ArticleStates" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleAu__artic__5441852A" Association="Self.FK__ArticleAu__artic__5441852A">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ArticleAuthor" EntitySet="ArticleAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleRe__artic__5812160E" Association="Self.FK__ArticleRe__artic__5812160E">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ArticleReviewer" EntitySet="ArticleReviewers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__File__articleId__412EB0B6" Association="Self.FK__File__articleId__412EB0B6">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="File" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Article_Conference" Association="Self.fk_Article_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleAu__autho__5535A963" Association="Self.FK__ArticleAu__autho__5535A963">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ArticleAuthor" EntitySet="ArticleAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArticleRe__revie__59063A47" Association="Self.FK__ArticleRe__revie__59063A47">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ArticleReviewer" EntitySet="ArticleReviewers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Author__authorId__4AB81AF0" Association="Self.FK__Author__authorId__4AB81AF0">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Author" EntitySet="Authors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_Conference" Association="Self.fk_User_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="ConferenceUser" EntitySet="ConferenceUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conferenc__userI__5070F446" Association="Self.FK__Conferenc__userI__5070F446">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ConferenceUser" EntitySet="ConferenceUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__institutio__47DBAE45" Association="Self.FK__User__institutio__47DBAE45">
+            <End Role="Institution" EntitySet="Institutions" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviewer__review__4D94879B" Association="Self.FK__Reviewer__review__4D94879B">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Reviewer" EntitySet="Reviewers" />
+          </AssociationSet>
+          <FunctionImport Name="GetCompatibleReviewersForArticle" EntitySet="Users" ReturnType="Collection(SI2Model.User)">
+          <Parameter Name="articleId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetCompatibleReviewersForArticle_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="institutionId" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="256" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SI2ModelStoreContainer" CdmEntityContainer="cs">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="SI2Model.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="conferenceId" ColumnName="conferenceId" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="accepted" ColumnName="accepted" />
+                <ScalarProperty Name="submissionDate" ColumnName="submissionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleAuthors">
+            <EntityTypeMapping TypeName="SI2Model.ArticleAuthor">
+              <MappingFragment StoreEntitySet="ArticleAuthor">
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="authorId" ColumnName="authorId" />
+                <ScalarProperty Name="isResponsible" ColumnName="isResponsible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleReviewers">
+            <EntityTypeMapping TypeName="SI2Model.ArticleReviewer">
+              <MappingFragment StoreEntitySet="ArticleReviewer">
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="reviewerId" ColumnName="reviewerId" />
+                <ScalarProperty Name="revisionText" ColumnName="revisionText" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleStates">
+            <EntityTypeMapping TypeName="SI2Model.ArticleState">
+              <MappingFragment StoreEntitySet="ArticleState">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="SI2Model.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="authorId" ColumnName="authorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conferences">
+            <EntityTypeMapping TypeName="SI2Model.Conference">
+              <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="acronym" ColumnName="acronym" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="submissionDate" ColumnName="submissionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConferenceUsers">
+            <EntityTypeMapping TypeName="SI2Model.ConferenceUser">
+              <MappingFragment StoreEntitySet="ConferenceUser">
+                <ScalarProperty Name="conferenceId" ColumnName="conferenceId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="SI2Model.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="file1" ColumnName="file" />
+                <ScalarProperty Name="insertionDate" ColumnName="insertionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Institutions">
+            <EntityTypeMapping TypeName="SI2Model.Institution">
+              <MappingFragment StoreEntitySet="Institution">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="acronym" ColumnName="acronym" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviewers">
+            <EntityTypeMapping TypeName="SI2Model.Reviewer">
+              <MappingFragment StoreEntitySet="Reviewer">
+                <ScalarProperty Name="reviewerId" ColumnName="reviewerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SI2Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="institutionId" ColumnName="institutionId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCompatibleReviewersForArticle" FunctionName="SI2Model.Store.GetCompatibleReviewersForArticle">
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

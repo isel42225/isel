@@ -1,0 +1,12 @@
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EF-Dal.exe.config
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EF-Dal.exe
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EF-Dal.pdb
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EntityFramework.dll
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EntityFramework.xml
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\obj\Debug\EF-Dal.csprojResolveAssemblyReference.cache
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\obj\Debug\EF-Dal.csproj.CoreCompileInputs.cache
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\obj\Debug\EF-Dal.csproj.CopyComplete
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\obj\Debug\EF-Dal.exe
+C:\Users\gonca\Desktop\SI2\SI2App\EF-Dal\obj\Debug\EF-Dal.pdb
