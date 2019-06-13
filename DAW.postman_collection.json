@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "a68fd5cf-a1a0-41ff-af9a-2b2c4520a3ca",
+		"name": "DAW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User Ze",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Ze\",\n\t\"password\" : \"123\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aaa25972-365e-441c-97eb-cab9636f7d16",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"A\",\n\t\"description\" : \"ABC\",\n\t\"states\" : [\"OPEN\",\"CLOSED\", \"ARCHIVED\"],\n\t\"transitions\":{\n\t\t\"OPEN\" : [\"CLOSED\"],\n\t\t\"CLOSED\" : [\"ARCHIVED\", \"OPEN\"],\n\t\t\"ARCHIVED\" : []\n\t},\n\t\"labels\" : [\"DEFECT\", \"EXPLORATION\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/project",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project B",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5676e50f-c254-4166-9be5-838be75deb09",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"B\",\n\t\"description\" : \"EASY\",\n\t\"states\" : [\"OPEN\",\"CLOSED\"],\n\t\"transitions\":{\n\t\t\"OPEN\" : [\"CLOSED\"],\n\t\t\"CLOSED\" : [\"OPEN\"]\n\t},\n\t\"labels\" : [\"DEFECT\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/project",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All projects",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43496e3f-6892-412c-9773-b799f429c257",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Project A",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c05fd27e-6cfe-49e0-ae76-00396f6c0a6c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches with new Description\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"DEF\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"A\",\n\t\"description\" : \"DEF\",\n\t\"states\" : [\"OPEN\",\"CLOSED\", \"ARCHIVED\"],\n\t\"transitions\":{\n\t\t\"OPEN\" : [\"CLOSED\"],\n\t\t\"CLOSED\" : [\"ARCHIVED\", \"OPEN\"],\n\t\t\"ARCHIVED\" : []\n\t},\n\t\"labels\" : [\"EXPLORATION\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/project/A",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Issue in Project A",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Do M1\",\n\t\"project\" : \"A\",\n\t\"description\" : \"Please\",\n\t\"labels\" : [\"EXPLORATION\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/project/A/issues",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all the issues of project A",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A/issues",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the first issue of project A",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A/issues/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Open issues of project A",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A/issues/by-state/open",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues",
+						"by-state",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get recent issues of project A",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A/issues/recent",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues",
+						"recent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Defect issues of Project A",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/project/A/issues/by-label/defect",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues",
+						"by-label",
+						"defect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a comment for project A, issue 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic V21VPTpNVEl6",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\" : \"Done\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/project/A/issues/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"A",
+						"issues",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
