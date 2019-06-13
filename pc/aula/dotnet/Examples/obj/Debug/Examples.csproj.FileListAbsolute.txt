@@ -1,0 +1,15 @@
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\obj\Debug\Examples.csprojResolveAssemblyReference.cache
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\obj\Debug\Examples.csproj.CoreCompileInputs.cache
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\Examples.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\Examples.pdb
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.abstractions.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.assert.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.core.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.execution.desktop.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.abstractions.xml
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.assert.xml
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.core.xml
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\bin\Debug\xunit.execution.desktop.xml
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\obj\Debug\Examples.csproj.CopyComplete
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\obj\Debug\Examples.dll
+C:\Users\gonca\ISEL\Cadeiras\18-19i\PC\s1819i-li52d\dotnet\Examples\obj\Debug\Examples.pdb
